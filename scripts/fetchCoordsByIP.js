@@ -2,7 +2,7 @@ const request = require("request-promise-native");
 const fetchMyIP = require('./ip').fetchMyIP;
 
 const promiseCallback =  (body) => {
-  console.log("GEO ADDRESS :>> ", JSON.parse(body));
+  //console.log("GEO ADDRESS :>> ", JSON.parse(body));
   global.IPAddress = JSON.parse(body);
   return JSON.parse(body);
 }

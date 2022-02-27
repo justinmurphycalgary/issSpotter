@@ -11,7 +11,9 @@ const { fetchMyIP } = require("./scripts/ip");
 fetchMyIP().then((IP) => {
   const IPString = JSON.parse(IP).ip;
   fetchCoordsByIP(IPString).then((GEO) => {
-console.log('GEO :>> ', GEO.latitude);
+    const geoLocation = {'latitude': GEO.latitude, 'longitude': GEO.longitude }
+    //console.log('GEO :>> ', GEO);
+    //console.log('GEO :>> ', geoLocation);
   })
 })
 
