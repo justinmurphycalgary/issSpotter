@@ -1,0 +1,24 @@
+{
+  "name": "issspotter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinmurphycalgary/issSpotter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justinmurphycalgary/issSpotter/issues"
+  },
+  "homepage": "https://github.com/justinmurphycalgary/issSpotter#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.9"
+  }
+}
