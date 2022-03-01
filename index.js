@@ -1,19 +1,14 @@
-//const app = require('./scripts/server');
 //const fetchMyIP = require('./scripts/ip').fetchMyIP
+const request = require("request-promise-native");
 const { fetchCoordsByIP } = require("./scripts/fetchCoordsByIP");
-const { fetchMyIP } = require("./scripts/ip");
+const { fetchMyIP } = require("./scripts/fetchMyIp");
+const { fetchISSFlyOverTimes } = require("./scripts/fetchISSFlyOverTimes");
 
-//  let p = new Promise((res, rej) =>{
-//  fetchMyIP() ;
-//  })
-// console.log('fetchMyIP() :>> ', fetchMyIP());
+const endResult = function () {
+  fetchMyIP()
+    .then((ip) => fetchCoordsByIP(ip))
+    .then((geo) => fetchISSFlyOverTimes(geo))
+    //.then((times) => nextISSTimesForMyLocation(times));
+};
 
-fetchMyIP().then((IP) => {
-  const IPString = JSON.parse(IP).ip;
-  fetchCoordsByIP(IPString).then((GEO) => {
-    const geoLocation = {'latitude': GEO.latitude, 'longitude': GEO.longitude }
-    //console.log('GEO :>> ', GEO);
-    //console.log('GEO :>> ', geoLocation);
-  })
-})
-
+endResult();

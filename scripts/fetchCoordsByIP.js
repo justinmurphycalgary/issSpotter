@@ -1,30 +1,19 @@
 const request = require("request-promise-native");
-const fetchMyIP = require('./ip').fetchMyIP;
 
-const promiseCallback =  (body) => {
-  //console.log("GEO ADDRESS :>> ", JSON.parse(body));
-  global.IPAddress = JSON.parse(body);
-  return JSON.parse(body);
-}
-
-
-const fetchCoordsByIP = (IP) => {
-  
-  return request(`https://api.freegeoip.app/json/${IP}?apikey=13a50be0-96d1-11ec-a496-b9a091e3b654`)
-  .then(promiseCallback)
-  
-
-
-
-  // .then((body) => {
-  // console.log("GEO ADDRESS :>> ", JSON.parse(body));
-  // global.IPAddress = JSON.parse(body);
-  // return JSON.parse(body);
-  // })
-  // .catch((err) =>{ 
-  // console.log('error :>> ', err);}
-  // )
-
+const fetchCoordsByIP = (ip) =>{ 
+  return request(`https://api.freegeoip.app/json/${ip}?apikey=13a50be0-96d1-11ec-a496-b9a091e3b654`)
+   .then ((GEO) => {
+     return geoLocation = {
+    "latitude": JSON.parse(GEO).latitude,
+    "longitude": JSON.parse(GEO).longitude
+  }  
+}) .catch((err) => {
+  if (err.name === 'StatusCodeError'){
+    console.log("fetchCoordsByIP => ", err.name, err.statusCode);
+  } else if (err.name === 'RequestError'){
+    console.log("fetchCoordsByIP => ", err.name, err.statusCode);
+  }
+});
 }
 
 module.exports.fetchCoordsByIP = fetchCoordsByIP;
